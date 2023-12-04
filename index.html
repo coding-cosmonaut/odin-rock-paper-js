@@ -8,8 +8,6 @@
   <body>
     <h1>Hello</h1>
     <script>
-      //let playerChoice = prompt("Rock, Paper....?");
-
       function getComputerChoice() {
         let randomNumber = Math.floor(Math.random() * 3);
         if (randomNumber === 0) {
@@ -23,11 +21,19 @@
         }
       }
 
-      function playRound(playerSelection = "rock", computerSelection) {
+      function playRound(
+        playerSelection = prompt("Rock, paper...."),
+        computerSelection = getComputerChoice()
+      ) {
         let player = playerSelection.toLowerCase();
         if (player === computerSelection) {
-          return playRound(prompt('Tie! Update your choice:'), computerSelection = getComputerChoice())
+          //console.log('INSIDE STRICT EQUALLITY', player, computerSelection)
+          return playRound(
+            prompt("Tie! Update your choice:"),
+            (computerSelection = getComputerChoice())
+          );
         } else if (player !== computerSelection) {
+          //console.log('IN ELSE IF', player, computerSelection)
           if (player === "rock") {
             if (computerSelection === "scissors") {
               return `You win! Rock beats Scissors`;
@@ -52,17 +58,26 @@
         }
       }
 
-      // function game(func) {
-      //   let computerScore = 0;
-      //   let playerScore = 0;
-      //   for (let i = 0; i < 5; i++) {
-      //     let results = func()
-      //     // if (results === )
-      //     console.log(results)
-      //   }
-      // }
+      function game(func) {
+        let computerScore = 0;
+        let playerScore = 0;
+        for (let i = 0; i < 5; i++) {
+          let results = func();
+          console.log(results);
+          if (results.search(/win!/) !== -1) {
+            playerScore++;
+          } else {
+            computerScore++;
+          }
+        }
+        if (playerScore > computerScore) {
+          return alert(`Human wins! ${playerScore}`);
+        } else {
+          return alert(`computer wins! ${computerScore}`);
+        }
+      }
 
-      //game(playRound)
+      game(playRound);
     </script>
   </body>
 </html>
