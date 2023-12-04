@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Hello</h1>
+    <script>
+      //let playerChoice = prompt("Rock, Paper....?");
+
+      function getComputerChoice() {
+        let randomNumber = Math.floor(Math.random() * 3);
+        if (randomNumber === 0) {
+          return "rock";
+        } else if (randomNumber === 1) {
+          return "paper";
+        } else if (randomNumber === 2) {
+          return "scissors";
+        } else {
+          return "Error";
+        }
+      }
+
+      function playRound(playerSelection = "rock", computerSelection) {
+        let player = playerSelection.toLowerCase();
+        if (player === computerSelection) {
+          return playRound(prompt('Tie! Update your choice:'), computerSelection = getComputerChoice())
+        } else if (player !== computerSelection) {
+          if (player === "rock") {
+            if (computerSelection === "scissors") {
+              return `You win! Rock beats Scissors`;
+            } else {
+              return `You lose! Paper beats Rock!`;
+            }
+          } else if (player === "paper") {
+            if (computerSelection === "rock") {
+              return `You win! Paper beats Rock`;
+            } else {
+              return `You lose! Scissors beats paper!`;
+            }
+          } else if (player === "scissors") {
+            if (computerSelection === "paper") {
+              return `You win! Scissors beats Paper!`;
+            } else {
+              return `You lose! Rock beats Scissors!`;
+            }
+          }
+        } else {
+          console.log("IDK");
+        }
+      }
+
+      // function game(func) {
+      //   let computerScore = 0;
+      //   let playerScore = 0;
+      //   for (let i = 0; i < 5; i++) {
+      //     let results = func()
+      //     // if (results === )
+      //     console.log(results)
+      //   }
+      // }
+
+      //game(playRound)
+    </script>
+  </body>
+</html>
