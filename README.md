@@ -3,4 +3,4 @@ JS project part of The Odin Project Foundations curriculum.
 
 # description 
 
-Browser version of something between a sketchpad and an Etch-A-Sketch. 
+A simple game of rock-paper-scissors that uses DOM manipulation. 
