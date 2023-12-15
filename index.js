@@ -1,14 +1,13 @@
 let computerScore = 0;
 let playerScore = 0;
 const resultsDiv = document.querySelector("#results");
-const currentScore = document.querySelector('p');
+const currentScore = document.querySelector("p");
 const playBtns = document.querySelectorAll("button");
 const playBtnsArr = Array.from(playBtns).map((item) => {
   item.addEventListener("click", playRound);
   return item;
 });
-currentScore.textContent = `Current Score: Player:${playerScore} Computer:${computerScore}`
-
+currentScore.textContent = `Current Score: Player:${playerScore} Computer:${computerScore}`;
 
 function getComputerChoice() {
   let randomNumber = Math.floor(Math.random() * 3);
@@ -35,28 +34,44 @@ function playRound(
     if (player === "rock") {
       if (computerSelection === "scissors") {
         playerScore += 1;
-        currentScore.textContent = `Current Score: Player:${playerScore} Computer:${computerScore}`
+        currentScore.textContent = `Current Score: Player:${playerScore} Computer:${computerScore}`;
         return playerScore === 5
           ? endgame()
           : (resultsDiv.innerHTML = `You win! ${player} beats ${computerSelection}.`);
       } else {
         computerScore += 1;
-        currentScore.textContent = `Current Score: Player:${playerScore} Computer:${computerScore}`
+        currentScore.textContent = `Current Score: Player:${playerScore} Computer:${computerScore}`;
         return computerScore === 5
           ? endgame()
           : (resultsDiv.innerHTML = `You lose! ${computerSelection} beats ${player}.`);
       }
     } else if (player === "paper") {
       if (computerSelection === "rock") {
-        return `You win! Paper beats Rock`;
+        playerScore += 1;
+        currentScore.textContent = `Current Score: Player:${playerScore} Computer:${computerScore}`;
+        return playerScore === 5
+          ? endgame()
+          : (resultsDiv.innerHTML = `You win! ${player} beats ${computerSelection}.`);
       } else {
-        return `You lose! Scissors beats paper!`;
+        computerScore += 1;
+        currentScore.textContent = `Current Score: Player:${playerScore} Computer:${computerScore}`;
+        return computerScore === 5
+          ? endgame()
+          : (resultsDiv.innerHTML = `You lose! ${computerSelection} beats ${player}.`);
       }
     } else if (player === "scissors") {
       if (computerSelection === "paper") {
-        return `You win! Scissors beats Paper!`;
+        playerScore += 1;
+        currentScore.textContent = `Current Score: Player:${playerScore} Computer:${computerScore}`;
+        return playerScore === 5
+          ? endgame()
+          : (resultsDiv.innerHTML = `You win! ${player} beats ${computerSelection}.`);
       } else {
-        return `You lose! Rock beats Scissors!`;
+        computerScore += 1;
+        currentScore.textContent = `Current Score: Player:${playerScore} Computer:${computerScore}`;
+        return computerScore === 5
+          ? endgame()
+          : (resultsDiv.innerHTML = `You lose! ${computerSelection} beats ${player}.`);
       }
     }
   } else {
@@ -68,10 +83,12 @@ function endgame() {
   if (playerScore === 5) {
     computerScore = 0;
     playerScore = 0;
-    return (resultsDiv.innerHTML = "You beat the computer! -- <strong>Select again to restart.</strong>");
+    return (resultsDiv.innerHTML =
+      "You beat the computer! -- <strong>Select again to restart.</strong>");
   } else {
     computerScore = 0;
     playerScore = 0;
-    return resultsDiv.innerHTML = "Computer beat ya. -- <strong>Select again to restart.</strong>";
+    return (resultsDiv.innerHTML =
+      "Computer beat ya. -- <strong>Select again to restart.</strong>");
   }
 }
